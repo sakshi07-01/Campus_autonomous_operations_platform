@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: gitleaks
+        name: gitleaks
+        entry: gitleaks detect --no-banner --redact --source . --exit-code 1
+        language: system
+        pass_filenames: false

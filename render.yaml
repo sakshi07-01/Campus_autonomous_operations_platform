@@ -1,0 +1,65 @@
+services:
+  - type: web
+    name: super-manager-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: APP_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: ENCRYPTION_SECRET
+        generateValue: true
+      # ===== AI Providers (ADD YOUR KEY) =====
+      # Kimi (Moonshot) - PRIMARY (OpenAI-compatible)
+      - key: KIMI_API_KEY
+        sync: false
+      - key: KIMI_BASE_URL
+        value: "https://api.moonshot.cn/v1"
+      - key: KIMI_MODEL
+        value: "moonshot-v1-8k"
+      
+      # OpenAI (optional fallback)
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_BASE_URL
+        value: "https://api.openai.com/v1"
+      - key: OPENAI_MODEL
+        value: "gpt-4o-mini"
+
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: AI_MODEL
+        value: "openai/gpt-3.5-turbo"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SAMBANOVA_API_KEY
+        sync: false
+      # ===== Zoom (optional) =====
+      - key: ZOOM_CLIENT_ID
+        sync: false
+      - key: ZOOM_CLIENT_SECRET
+        sync: false
+      - key: ZOOM_ACCOUNT_ID
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: SMTP_EMAIL
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
